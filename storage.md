@@ -61,8 +61,8 @@ cp .env.sample .env
 ```bash
 docker compose --profile '*' pull
 ```
-
-
+  
+  
 
 
 ## 3. Storage 노드 설정 및 실행
