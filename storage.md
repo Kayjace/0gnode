@@ -1,10 +1,11 @@
-# 0G DA 노드 설치 및 실행 가이드
+# 0G storage 노드 설치 및 실행 가이드
 
-이 가이드는 0G Labs의 ZeroGravity 네트워크에서 DA(Data Availability) 노드를 설치하고 실행하는 방법을 설명합니다.
+이 가이드는 0G Labs의 ZeroGravity 네트워크에서 storage 노드를 설치하고 실행하는 방법을 설명합니다.
 
 ### 요구사항
 
 linux 또는 wsl 환경
+지갑에 a0gi 필요. (faucet 등에서 수령 가능)
 
 0G Labs에서 노드를 실행하기 위한 최소 하드웨어 요구사항:
 
