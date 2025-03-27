@@ -38,7 +38,7 @@ sudo apt install docker-compose -y
 <br>
 <br>
 
-### 2. EmberStake 저장소 클론하기 (마찬가지로 이미 하신분은 패스)
+## 2. EmberStake 저장소 클론하기 (마찬가지로 이미 하신분은 패스)
 
 다음 명령어로 최신 버전의 저장소를 클론합니다:
 
