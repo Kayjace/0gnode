@@ -1,8 +1,10 @@
-# 0G Labs 노드 설치 및 실행 가이드
+# 0G DA 노드 설치 및 실행 가이드
 
-이 가이드는 0G Labs의 ZeroGravity 네트워크에서 Storage 노드와 DA(Data Availability) 노드를 설치하고 실행하는 방법을 설명합니다.
+이 가이드는 0G Labs의 ZeroGravity 네트워크에서 DA(Data Availability) 노드를 설치하고 실행하는 방법을 설명합니다.
 
-## 1. 하드웨어 준비
+### 요구사항
+
+linux 또는 wsl 환경
 
 0G Labs에서 노드를 실행하기 위한 최소 하드웨어 요구사항:
 
@@ -12,7 +14,7 @@
 - **저장 공간**: 500GB SSD
 - **네트워크**: 안정적인 연결과 최소 지연 시간
 
-## 2. 기본 설정
+## 1. 기본 설정 (필요한 종속성 및 docker를 설치하신 분은 패스)
 
 ### 필요한 종속성 설치
 
@@ -33,7 +35,7 @@ sudo sh get-docker.sh
 sudo apt install docker-compose -y
 ```
 
-### EmberStake 저장소 클론하기
+### 2. EmberStake 저장소 클론하기 (마찬가지로 이미 하신분은 패스)
 
 다음 명령어로 최신 버전의 저장소를 클론합니다:
 
@@ -60,9 +62,6 @@ docker compose --profile '*' pull
 
 ## 3. Storage 노드 설정 및 실행
 
-### 전제 조건
-
-- "Getting Started with ZeroGravity" 가이드를 완료했어야 합니다.
 
 ### 환경 변수 설정
 
@@ -74,8 +73,8 @@ nano .env
 
 다음 중요 변수들을 적절히 설정합니다:
 
-- **STORAGE_MINER_PRIVATE_KEY**: 테스트넷 토큰이 있는 지갑의 개인키 (0x 접두사 제외)
-  - 메타마스크에서 새 지갑을 생성하고 개인키를 내보낸 후 맨 앞의 0x 제거
+- **STORAGE_MINER_PRIVATE_KEY**: 테스트넷 토큰이 있는 지갑의 개인키(프라이빗키) (0x 접두사 제외)
+  - 메타마스크에서 노드용 버너 지갑을 생성하고 개인키를 내보낸 후 맨 앞의 0x 제거
   - 또는 `0gchaind keys unsafe-export-eth-key $WALLET_NAME` 명령어로 기존 검증자 계정의 개인키 사용
 - **STORAGE_ENR_ADDRESS**: 서버의 공개 IP 주소
 - **STORAGE_BLOCKCHAIN_RPC_ENDPOINT**: 이 Docker Compose 파일로 노드/검증자를 실행 중이면 `http://node:8545`를 사용하거나, 그렇지 않으면 공개 RPC 엔드포인트 사용
@@ -85,7 +84,7 @@ nano .env
 
 Storage 노드 지갑에는 a0gi가 필요합니다. Faucet에서 자금을 받을 수 있습니다.
 
-0gchaind 바이너리로 지갑을 생성한 경우, 다음 명령어로 EVM 주소를 확인할 수 있습니다:
+0gchaind 바이너리로 지갑을 생성한 경우, 다음 명령어로 EVM 주소를 확인할 수 있습니다 (메타마스크 등에 지갑 주소 갖고있으면 필요 없는 절차):
 
 ```bash
 echo "0x$(0gchaind debug addr $(0gchaind keys show $WALLET_NAME -a) | grep hex | awk '{print $3}')"
@@ -103,9 +102,7 @@ docker compose --profile storage up -d storage-node
 docker compose --profile storage logs -f --since 1m storage-node
 ```
 
-### 업그레이드 (v0.6.0 → v0.7.5)
-
-이 업그레이드는 호환성을 깨지 않지만 기본 설정에 변경 사항이 있습니다:
+### 이후 노드 업데이트 방법
 
 ```bash
 # 저장소 업데이트 및 이미지 가져오기
