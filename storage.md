@@ -13,8 +13,8 @@ linux 또는 wsl 환경
 - **메모리**: 16GB RAM
 - **저장 공간**: 500GB SSD
 - **네트워크**: 안정적인 연결과 최소 지연 시간
-
-
+<br>
+  
 ## 1. 기본 설정 (필요한 종속성 및 docker를 설치하신 분은 패스)
 
 ### 필요한 종속성 설치
@@ -35,7 +35,8 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 sudo apt install docker-compose -y
 ```
-
+<br>
+<br>
 
 ### 2. EmberStake 저장소 클론하기 (마찬가지로 이미 하신분은 패스)
 
@@ -61,9 +62,8 @@ cp .env.sample .env
 ```bash
 docker compose --profile '*' pull
 ```
-  
-  
-
+<br>
+<br>
 
 ## 3. Storage 노드 설정 및 실행
 
